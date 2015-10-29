@@ -31,12 +31,9 @@ def importdata(fil):
     with open(fil) as f:
 		f.readline()        
 		line = f.readline()
-		#for _ in xrange(21):
-		#	next(f)
 		while line !='':
-		#for line in f:
 			words = line.split(',')
-			if len(words)> 7:
+			if len(words)> 7 and words[0]!='# STN'and words[8]!='':
 				NeerslagStation.objects.get_or_create(
 					nummer = int(words[0]),
 					datum = str(words[1]),

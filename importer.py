@@ -33,8 +33,8 @@ def importdata(fil):
 		line = f.readline()
 		while line !='':
 			words = line.split(',')
-			if len(words)> 7:
-				NeerslagStation.objects.get_or_create(
+			if len(words)> 7 and words[0]!='# STN'and words[8]!='':
+				MeteoData.objects.get_or_create(
 					nummer = int(words[0]),
 					datum = str(words[1]),
 					rh = int(words[2]),
