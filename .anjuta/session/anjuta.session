@@ -3,7 +3,7 @@ Maximized=1
 Geometry=1855x1056+1431+24
 
 [File Loader]
-Files=../../models.py#22%%%../../tests.py#1%%%../../views.py#1
+Files=../../models.py#52%%%../../tests.py#1%%%../../views.py#28%%%../../admin.py#1%%%../../importer.py#38
 
 [Document Manager]
 bookmarks=<?xml version="1.0" encoding="UTF-8"?>\n<bookmarks/>\n
@@ -15,6 +15,9 @@ Working directories=../../../knmi_database
 [Project Manager]
 Expand=knmi_database
 
+[Debugger]
+Stop at beginning=2
+
 [Build]
 Configuration list=1:Default:%%%1:Debug:Debug%%%1:Profiling:Profiling%%%1:Optimized:Optimized
 Selected Configuration=Default
@@ -22,6 +25,3 @@ BuildArgs/Default=--enable-maintainer-mode
 BuildArgs/Debug=--enable-maintainer-mode 'CFLAGS=-g -O0' 'CXXFLAGS=-g -O0' 'JFLAGS=-g -O0' 'FFLAGS=-g -O0'
 BuildArgs/Profiling=--enable-maintainer-mode 'CFLAGS=-g -pg' 'CXXFLAGS=-g -pg' 'JFLAGS=-g -pg' 'FFLAGS=-g -pg'
 BuildArgs/Optimized=--enable-maintainer-mode 'CFLAGS=-O2' 'CXXFLAGS=-O2' 'JFLAGS=-O2' 'FFLAGS=-O2'
-
-[Debugger]
-Stop at beginning=2

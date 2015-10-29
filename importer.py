@@ -52,7 +52,7 @@ def importall():
 
 
 def import_geg():
-	MeteoData.objects.all().delete() #werkende stationsnummers: 215, 235, 249, 260, 
+	#MeteoData.objects.all().delete() #werkende stationsnummers: 215, 235, 249, 260, 
 	#niet werkende stationsnummers: 240,240, 242, 251, 257, 
-	for i in  [265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
+	for i in  [215, 235, 240, 242, 249, 251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
 		importdata('/home/john/ftm/ftm/ftm/data/METEO'+str(i)+'.TXT')
