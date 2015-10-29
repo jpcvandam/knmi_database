@@ -35,7 +35,7 @@ def importdata(fil):
 		line = f.readline()
 		while line !='':
 			words = line.split(',')
-			if len(words)> 7 and words[0]!='# STN'and words[8]!='':
+			if len(words)> 7 and words[0]!='# STN'and words[8]!=''and words[1]!=''and words[2]!='':
 				MeteoData.objects.get_or_create(
 					nummer = int(words[0]),
 					datum = parser.parse(words[1]),
@@ -52,6 +52,7 @@ def importall():
 
 
 def import_geg():
-	MeteoData.objects.all().delete()
-	for i in  [215]:#[215, 225, 235, 240, 242, 249, 251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
+	MeteoData.objects.all().delete() #werkende stationsnummers: 215, 235, 249,
+	#niet werkende stationsnummers: 240,240, 242,
+	for i in  [251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
 		importdata('/home/john/ftm/ftm/ftm/data/METEO'+str(i)+'.TXT')
