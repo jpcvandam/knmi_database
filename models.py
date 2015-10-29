@@ -47,3 +47,10 @@ class NeerslagStation(models.Model):
 
     class Meta:
         ordering = ('naam',)
+
+
+class MeteoData(models.Model):
+	nummer = models.IntegerField()
+	datum = models.DateTimeField()
+	rh = models.IntegerField()
+	ev24 = models.IntegerField()

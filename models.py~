@@ -2,8 +2,9 @@ from django.db import models
 
 # Create your models here.
 from django.contrib.gis.db import models
-from ..util import RDNEW
 from .util import closest as closestn
+WGS84 = 4326
+RDNEW = 28992
 
 class Station(models.Model):
     nummer = models.IntegerField()
