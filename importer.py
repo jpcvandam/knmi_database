@@ -23,22 +23,24 @@ def importneerslag(fil):
                     location = target
                 )
             line = f.readline()
+################################################################################
+#Meteodata uit de tekstbestandjes importeren
+################################################################################
 
 def importdata(fil):
     with open(fil) as f:
-        f.readline()
-        line = f.readline()
-        while line != '':
-            words = line.split(',')
-            if len(words)> 7:
-				line
+		f.readline()        
+		line = f.readline()
+		while line !='':
+			words = line.split(',')
+			if len(words)> 7:
 				NeerslagStation.objects.get_or_create(
 					nummer = int(words[0]),
 					datum = str(words[1]),
 					rh = int(words[2]),
-					ev24 = int(words[8]),
+					ev24 = int(words[8])
                 )
-            line = f.readline()			    
+			line = f.readline()			    
     
 
 
