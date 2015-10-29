@@ -2,6 +2,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 from models import Station, NeerslagStation
 from django.contrib.gis.geos import Point
+#from importer import importneerslag, importstations, importall
 #from django.contrib.auth.decorators import login_required
 WGS84 = 4326
 RDNEW = 28992
@@ -31,3 +32,6 @@ def select_station(request):
         stations = Station.objects.distance(target).order_by('distance')
     return render_to_response('knmi/select_station.html', {'station_type': type, 'target': target, 'stations': stations}, context_instance=RequestContext(request))
 
+def #import_stations(request):
+	#importall()
+	#return render_to_response() 
