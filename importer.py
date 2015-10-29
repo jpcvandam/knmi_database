@@ -1,5 +1,7 @@
 from models import NeerslagStation, Station, MeteoData
 from django.contrib.gis.geos import Point
+from dateutil import parser
+
 WGS84 = 4326
 RDNEW = 28992
 
@@ -36,7 +38,7 @@ def importdata(fil):
 			if len(words)> 7 and words[0]!='# STN'and words[8]!='':
 				MeteoData.objects.get_or_create(
 					nummer = int(words[0]),
-					datum = str(words[1]),
+					datum = parser.parse(words[1]),
 					rh = int(words[2]),
 					ev24 = int(words[8])
                 )
