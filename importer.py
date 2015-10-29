@@ -1,4 +1,4 @@
-from models import NeerslagStation, Station
+from models import NeerslagStation, Station, MeteoData
 from django.contrib.gis.geos import Point
 WGS84 = 4326
 RDNEW = 28992
@@ -31,6 +31,7 @@ def importdata(fil):
         while line != '':
             words = line.split(',')
             if len(words)> 7:
+				line
 				NeerslagStation.objects.get_or_create(
 					nummer = int(words[0]),
 					datum = str(words[1]),
@@ -48,5 +49,5 @@ def importall():
 
 def import_geg():
 	MeteoData.objects.all().delete()
-	for i in [215, 225, 235, 240, 242, 249, 251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
-		importneerslag('/home/john/ftm/ftm/ftm/data/METEO'+str(i)+'.TXT')
+	for i in  [215]:#[215, 225, 235, 240, 242, 249, 251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
+		importdata('/home/john/ftm/ftm/ftm/data/METEO'+str(i)+'.TXT')
