@@ -50,10 +50,21 @@ class NeerslagStation(models.Model):
 
 
 class MeteoData(models.Model):
-	nummer = models.IntegerField()
-	datum = models.DateTimeField()
-	rh = models.IntegerField()
-	ev24 = models.IntegerField()
+    station=models.ForeignKey(Station, blank=True, null=True)
+    nummer = models.IntegerField()
+    datum = models.DateTimeField()	
+    rh = models.IntegerField()
+    ev24 = models.IntegerField()
     
-        def __unicode__(self):
-            return self.nummer
+    def __unicode__(self):
+        return self.nummer
+    
+def updatestation():
+    for d in MeteoData.objects.all():
+        print d.nummer
+        d.station = NeerslagStation.objects.get(nummer=d.nummer)
+        d.save()
+        
+if __name__ == '__main__':
+    updatestation()
+    
