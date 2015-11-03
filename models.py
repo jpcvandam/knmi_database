@@ -54,3 +54,6 @@ class MeteoData(models.Model):
 	datum = models.DateTimeField()
 	rh = models.IntegerField()
 	ev24 = models.IntegerField()
+    
+        def __unicode__(self):
+            return self.nummer
