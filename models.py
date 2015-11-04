@@ -46,11 +46,11 @@ class NeerslagStation(models.Model):
         return closestn(cls,coords,n)
 
     class Meta:
-        ordering = ('naam',)
+        ordering = ('naam', 'nummer',)
 
 
 class MeteoData(models.Model):
-    station=models.ForeignKey(Station, blank=True, null=True)
+    station=models.ForeignKey(NeerslagStation, blank=True, null=True)
     nummer = models.IntegerField()
     datum = models.DateTimeField()	
     rh = models.IntegerField()

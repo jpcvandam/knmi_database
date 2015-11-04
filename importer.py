@@ -31,18 +31,20 @@ def importneerslag(fil):
 
 def importdata(fil):
     with open(fil) as f:
-		f.readline()        
-		line = f.readline()
-		while line !='':
-			words = [w.strip() for w in line.split(',')]
-			if len(words)> 7 and words[0]!='# STN'and words[8]!=''and words[1]!=''and words[2]!='':
-				MeteoData.objects.get_or_create(
-					nummer = int(words[0]),
-					datum = parser.parse(words[1]),
-					rh = int(words[2]),
-					ev24 = int(words[8])
+        f.readline()        
+        line = f.readline()
+        while line !='':
+            words = [w.strip() for w in line.split(',')]
+            if len(words)> 7 and words[0]!='# STN'and words[8]!=''and words[1]!=''and words[2]!='':
+                nummer1 = int(words[0])
+                MeteoData.objects.get_or_create(
+                    nummer = int(words[0]),
+                    datum = parser.parse(words[1]),
+                    rh = int(words[2]),
+                    ev24 = int(words[8]),
+                    station = NeerslagStation.objects.get(nummer=nummer1)
                 )
-			line = f.readline()			    
+            line = f.readline()                
     
 
 
