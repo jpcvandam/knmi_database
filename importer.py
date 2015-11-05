@@ -1,4 +1,4 @@
-from models import NeerslagStation, Station, MeteoData
+from knmi_database.models import NeerslagStation, Station, MeteoData
 from django.contrib.gis.geos import Point
 from dateutil import parser
 
