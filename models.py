@@ -57,7 +57,7 @@ class MeteoData(models.Model):
     ev24 = models.IntegerField()
     
     def __unicode__(self):
-        return self.nummer
+        return unicode(self.nummer) or u''
     
 def updatestation():
     for d in MeteoData.objects.all():
