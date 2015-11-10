@@ -36,4 +36,9 @@ def select_station(request):
 	#importall()
 	#return render_to_response() 
     
-    
+
+def dichtstbijzijnde_nummer(x, y):
+    target = Point(float(x),float(y), srid=WGS84)
+    target.transform(RDNEW)
+    stations = NeerslagStation.objects.distance(target).order_by('distance')
+    return nummer
