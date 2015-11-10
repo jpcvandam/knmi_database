@@ -32,6 +32,8 @@ def select_station(request):
         stations = Station.objects.distance(target).order_by('distance')
     return render_to_response('knmi/select_station.html', {'station_type': type, 'target': target, 'stations': stations}, context_instance=RequestContext(request))
 
-def #import_stations(request):
+#def import_stations(request):
 	#importall()
 	#return render_to_response() 
+    
+    
