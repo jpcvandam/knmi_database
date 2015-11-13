@@ -1,6 +1,7 @@
 from knmi_database.models import NeerslagStation, Station, MeteoData
 from django.contrib.gis.geos import Point
 from dateutil import parser
+from ftm.settings import DATA_ROOT
 
 WGS84 = 4326
 RDNEW = 28992
@@ -50,13 +51,11 @@ def importdata(fil):
 
 def importall():
     NeerslagStation.objects.all().delete()
-    importneerslag('/home/john/ftm/ftm/ftm/data/KNMI_meteostations.csv')
+    importneerslag(DATA_ROOT + 'KNMI_meteostations.csv')
 
 
-def import_geg():
-	#MeteoData.objects.all().delete() #werkende stationsnummers: 215, 235, 249, 260, 
-	#niet werkende stationsnummers: 240,240, 242, 251, 257, 
+def import_geg(): 
 	for i in  [215, 235, 240, 242, 249, 251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
-		importdata('/home/john/ftm/ftm/ftm/data/METEO'+str(i)+'.TXT')
+		importdata(DATA_ROOT + 'METEO'+str(i)+'.TXT')
 
 import_geg()
