@@ -59,6 +59,9 @@ class MeteoData(models.Model):
     def __unicode__(self):
         return unicode(self.rh-self.ev24) or u''
     
+    class Meta:
+        ordering = ('datum', 'nummer',)
+    
 def updatestation():
     for d in MeteoData.objects.all():
         print d.nummer

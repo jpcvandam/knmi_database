@@ -34,20 +34,24 @@ def importdata(fil):
     with open(fil) as f:
         f.readline()        
         line = f.readline()
+        data = []
         while line !='':
             words = [w.strip() for w in line.split(',')]
-            if len(words)> 7 and words[0]!='# STN'and words[8]!=''and words[1]!=''and words[2]!='':
+            if len(words)> 7 and words[0]!='# STN'and words[8]!=''and words[1]!=''and words[3]!='':
                 nummer1 = int(words[0])
-                MeteoData.objects.get_or_create(
+                item = MeteoData(
                     nummer = int(words[0]),
                     datum = parser.parse(words[1]),
-                    rh = int(words[2]),
+                    rh = int(words[3]),
                     ev24 = int(words[8]),
                     station = NeerslagStation.objects.get(nummer=nummer1)
                 )
+                data.append(item)
             line = f.readline()                
-    
-
+        MeteoData.objects.bulk_create(data)
+        
+        
+      
 
 def importall():
     NeerslagStation.objects.all().delete()
