@@ -30,6 +30,26 @@ def importneerslag(fil):
 #Meteodata uit de tekstbestandjes importeren
 ################################################################################
 
+def importalldata(fil):
+    with open(fil) as f:
+        f.readline()        
+        line = f.readline()
+        data = []
+        while line !='':
+            words = [w.strip() for w in line.split(',')]
+            if len(words)> 7 and words[0]!='# STN'and words[8]!=''and words[1]!=''and words[3]!='':
+                nummer1 = int(words[0])
+                item = MeteoData(
+                    nummer = int(words[0]),
+                    datum = parser.parse(words[1]),
+                    rh = int(words[3]),
+                    ev24 = int(words[8]),
+                    station = NeerslagStation.objects.get(nummer=nummer1)
+                )
+                data.append(item)
+            line = f.readline()                
+        MeteoData.objects.bulk_create(data)
+        
 def importdata(fil):
     with open(fil) as f:
         f.readline()        
@@ -44,10 +64,9 @@ def importdata(fil):
                     rh = int(words[3]),
                     ev24 = int(words[8]),
                     station = NeerslagStation.objects.get(nummer=nummer1)
-                )
-            line = f.readline()                
-    
-
+                )                
+            line = f.readline()        
+      
 
 def importall():
     NeerslagStation.objects.all().delete()
