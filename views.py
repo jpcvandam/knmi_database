@@ -13,10 +13,10 @@ def find_stations(x, y):# request):
     #type = request.GET.get('type', 'meteo')
     target = Point(float(x),float(y), srid=WGS84)
     target.transform(RDNEW)
-    if type == 'neerslag':
-        stations = NeerslagStation.objects.distance(target).order_by('distance')
-    else: # meteo
-        stations = Station.objects.distance(target).order_by('distance')
+    #if type == 'neerslag':
+    stations = NeerslagStation.objects.distance(target).order_by('distance')
+    #else: # meteo
+    #    stations = Station.objects.distance(target).order_by('distance')
     return stations #render_to_response('knmi/station_list.html', {'station_type': type, 'target': target, 'stations': stations}, context_instance=RequestContext(request))
 
 
