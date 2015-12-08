@@ -58,4 +58,40 @@ def import_geg():
 	for i in  [215, 235, 240, 242, 249, 251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
 		importdata(DATA_ROOT + 'METEO'+str(i)+'.TXT')
 
-import_geg()
+def importalldata(fil):
+    with open(fil) as f:
+        f.readline()        
+        line = f.readline()
+        data = []
+        while line !='':
+            words = [w.strip() for w in line.split(',')]
+            if len(words)> 7 and words[0]!='# STN'and words[8]!=''and words[1]!=''and words[3]!='':
+                nummer1 = int(words[0])
+                item = MeteoData(
+                    nummer = int(words[0]),
+                    datum = parser.parse(words[1]),
+                    rh = int(words[3]),
+                    ev24 = int(words[8]),
+                    station = NeerslagStation.objects.get(nummer=nummer1)
+                )
+                data.append(item)
+            line = f.readline()                
+        MeteoData.objects.bulk_create(data)
+
+ 
+def import_allgeg(): 
+    for i in  [215, 235, 240, 242, 249, 251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]:
+        importalldata(DATA_ROOT + 'METEO'+str(i)+'.TXT')
+
+
+
+goed = [215, 235, 240, 242, 249, 251, 257, 260, 265, 267, 269, 270, 273, 275, 277, 278, 279, 280, 283, 286, 290, 310, 323,  319, 330, 340, 344, 348, 350, 356, 370, 375, 377, 380, 391,  ]
+def opruimen():
+    for s in NeerslagStation.objects.all():
+        if not s.nummer in goed:
+            print s.nummer, s.naam
+            s.delete()
+            
+
+#import_geg()
+import_allgeg()

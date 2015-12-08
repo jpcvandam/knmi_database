@@ -61,6 +61,7 @@ class MeteoData(models.Model):
     
     class Meta:
         ordering = ('datum', 'nummer',)
+        unique_together = ('nummer', 'datum')
     
 def updatestation():
     for d in MeteoData.objects.all():
