@@ -93,5 +93,5 @@ def opruimen():
             s.delete()
             
 
-#import_geg()
-import_allgeg()
+import_geg()
+#import_allgeg()
